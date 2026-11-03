@@ -1,0 +1,30 @@
+-- 개발 DB / 테스트 DB 를 분리해서 생성
+CREATE DATABASE IF NOT EXISTS wise_saying_dev
+    DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+CREATE DATABASE IF NOT EXISTS wise_saying_test
+    DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+-- 개발 DB 테이블
+USE wise_saying_dev;
+
+CREATE TABLE IF NOT EXISTS wise_saying (
+    id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    createDate DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifyDate DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    content    TEXT         NOT NULL,
+    author     VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- 테스트 DB 테이블 (구조 동일)
+USE wise_saying_test;
+
+CREATE TABLE IF NOT EXISTS wise_saying (
+    id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    createDate DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifyDate DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    content    TEXT         NOT NULL,
+    author     VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
